@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 
 # CHAT DE DESTINO PARA LAS COPIAS
-COPY_CHAT_ID = -1001794205779
+COPY_CHAT_ID = -1002233073869
 
 # ============ CONFIGURACIÓN DE RATE LIMITING ============
 class RateLimiter:
@@ -560,3 +560,4 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
