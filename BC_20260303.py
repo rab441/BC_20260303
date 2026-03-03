@@ -250,7 +250,7 @@ def run_flask():
     app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
 
 def keep_alive_ping():
-    app_url = os.environ.get('RENDER_EXTERNAL_URL', 'http://localhost:8080')
+    app_url = os.environ.get('RAILWAY_STATIC_URL', os.environ.get('RENDER_EXTERNAL_URL', 'http://localhost:8080'))
 
     while True:
         try:
@@ -553,4 +553,5 @@ def main() -> None:
 
 
 if __name__ == '__main__':
+
     main()
