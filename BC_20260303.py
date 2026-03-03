@@ -250,7 +250,7 @@ def run_flask():
     app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
 
 def keep_alive_ping():
-    app_url = os.environ.get('RAILWAY_STATIC_URL', os.environ.get('RENDER_EXTERNAL_URL', 'http://localhost:8080'))
+    app_url = os.environ.get('RENDER_EXTERNAL_URL', 'http://localhost:8080')
 
     while True:
         try:
@@ -506,6 +506,12 @@ async def cleanup_media_groups_task():
 
 
 def main() -> None:
+    # Fix para Python 3.12+ / 3.14: crear el event loop explícitamente
+    # antes de que Flask/threading lo interfiera
+    import asyncio
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
     start_keep_alive()
 
     async def error_handler(update, context):
@@ -553,5 +559,4 @@ def main() -> None:
 
 
 if __name__ == '__main__':
-
     main()
